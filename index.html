@@ -6,6 +6,15 @@
 	<link href="test.css" rel="stylesheet"/>
 </head>
 <body>
-<p>Hello world Index</p>
+<p>{{message}}</p>
+<script src="https://unpkg.com/vue"></script>
+<script>
+	let app = new Vue({
+		el:"#app",
+		data:{
+			message:"Hello World Vue!",
+		}
+	});
+</script>
 </body>
 </html>
