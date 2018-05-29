@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
@@ -11,7 +11,12 @@
 	<a href="./README.md">查看readme</a>
 </div>
 <script src="https://unpkg.com/vue"></script>
-<script>
+
+<script type="module">
+	import {name} from './js/a';
+
+	console.log(name);
+
 	let app = new Vue({
 		el:"#app",
 		data:{
