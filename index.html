@@ -29,7 +29,7 @@
 	<div class="row">
 		<div class="col-md-12">
 
-			<div class="text-center">
+			<div class="content text-center">
 				<h1>亲爱的小仙女，来玩一个猜数字的游戏吧:)</h1>
 				<p class="text-center">猜一个1-100之间的数字,只可以猜10次呀</p>
 
@@ -101,7 +101,7 @@
 		resetButton = document.createElement ('button');
 		resetButton.textContent = '再次开始游戏吧';
 		resetButton.className = 'btn btn-primary';
-		document.body.appendChild (resetButton);
+		document.querySelector('.content').appendChild (resetButton);
 		resetButton.addEventListener ('click', resetGame);
 	}
 
