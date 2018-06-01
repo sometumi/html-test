@@ -2,9 +2,9 @@
 <html>
 <head>
 	<meta charset="utf-8">
-
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Number guessing game</title>
-	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	<style>
 		html {
 			font-family: sans-serif;
@@ -25,30 +25,31 @@
 </head>
 
 <body>
-<el-row>
-	<el-col :span="24">
-		<div class="grid-content bg-purple-dark">
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
 			<h1>亲爱的小仙女，来玩一个猜数字的游戏吧:)</h1>
 
-			<p>猜一个1-100之间的数字,只可以猜10次呀</p>
+			<div class="text-center">
+				<p class="text-center">猜一个1-100之间的数字,只可以猜10次呀</p>
 
-			<div class="form">
-				<label for="guessField">输入你的数字: </label><input type="text" id="guessField" class="guessField">
-				<input type="submit" value="确定" class="guessSubmit">
+				<div class="form form-group">
+					<label for="guessField">输入你的数字: </label><input type="text" id="guessField" class="guessField form-control">
+					<input type="submit" value="确定" class="guessSubmit btn-success">
+				</div>
+
+				<div class="resultParas">
+					<p class="guesses"></p>
+					<p class="lastResult"></p>
+					<p class="lowOrHi"></p>
+				</div>
 			</div>
 
-			<div class="resultParas">
-				<p class="guesses"></p>
-				<p class="lastResult"></p>
-				<p class="lowOrHi"></p>
-			</div>
 		</div>
-	</el-col>
-</el-row>
 
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<!-- import JavaScript -->
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+	</div>
+</div>
 <script>
 	// Your JavaScript goes here
 	let randomNumber = Math.floor (Math.random () * 100) + 1;
@@ -62,9 +63,10 @@
 
 	let guessCount = 1;
 	let resetButton;
-	guessSubmit.addEventListener('click',function () {
-		checkGuess();
+	guessSubmit.addEventListener ('click', function () {
+		checkGuess ();
 	});
+
 	function checkGuess() {
 		let userGuess = Number (guessField.value);
 		if (guessCount === 1) {
@@ -101,24 +103,25 @@
 		document.body.appendChild (resetButton);
 		resetButton.addEventListener ('click', resetGame);
 	}
+
 	function resetGame() {
 		guessCount = 1;
 
-		let resetParas = document.querySelectorAll('.resultParas p');
-		for (let i = 0 ; i < resetParas.length ; i++) {
+		let resetParas = document.querySelectorAll ('.resultParas p');
+		for (let i = 0; i < resetParas.length; i++) {
 			resetParas[i].textContent = '';
 		}
 
-		resetButton.parentNode.removeChild(resetButton);
+		resetButton.parentNode.removeChild (resetButton);
 
 		guessField.disabled = false;
 		guessSubmit.disabled = false;
 		guessField.value = '';
-		guessField.focus();
+		guessField.focus ();
 
 		lastResult.style.backgroundColor = 'white';
 
-		randomNumber = Math.floor(Math.random() * 100) + 1;
+		randomNumber = Math.floor (Math.random () * 100) + 1;
 	}
 </script>
 </body>
