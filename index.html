@@ -25,20 +25,27 @@
 </head>
 
 <body>
-<h1>亲爱的小仙女，来玩一个猜数字的游戏吧:)</h1>
+<el-row>
+	<el-col :span="24">
+		<div class="grid-content bg-purple-dark">
+			<h1>亲爱的小仙女，来玩一个猜数字的游戏吧:)</h1>
 
-<p>猜一个1-100之间的数字</p>
+			<p>猜一个1-100之间的数字</p>
 
-<div class="form">
-	<label for="guessField">输入你的数字: </label><input type="text" id="guessField" class="guessField">
-	<input type="submit" value="确定" class="guessSubmit">
-</div>
+			<div class="form">
+				<label for="guessField">输入你的数字: </label><input type="text" id="guessField" class="guessField">
+				<input type="submit" value="确定" class="guessSubmit">
+			</div>
 
-<div class="resultParas">
-	<p class="guesses"></p>
-	<p class="lastResult"></p>
-	<p class="lowOrHi"></p>
-</div>
+			<div class="resultParas">
+				<p class="guesses"></p>
+				<p class="lastResult"></p>
+				<p class="lowOrHi"></p>
+			</div>
+		</div>
+	</el-col>
+</el-row>
+
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <!-- import JavaScript -->
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
@@ -73,7 +80,7 @@
 			lastResult.textContent = '!!!GAME OVER!!!';
 			setGameOver ();
 		} else {
-			lastResult.textContent = '李雪小仙女:)';
+			lastResult.textContent = '猜错啦,李雪小仙女:)';
 			lastResult.style.backgroundColor = 'red';
 			if (userGuess < randomNumber) {
 				lowOrHi.textContent = '小仙女你的数字太小啦!';
