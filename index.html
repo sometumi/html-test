@@ -1,130 +1,75 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Number guessing game</title>
-	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-	<style>
-		html {
-			font-family: sans-serif;
-		}
-
-		body {
-			width: 50%;
-			max-width: 800px;
-			min-width: 480px;
-			margin: 0 auto;
-		}
-
-		.lastResult {
-			color: white;
-			padding: 3px;
-		}
-	</style>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">    
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="This is my page">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>放烟花，放个大烟花~~~</title>
+<style>
+html, body {
+	margin: 0;	
+	padding: 0;
+}
+#canvas-container {
+	background: #000 url(bg.jpg);
+  height: 100%;
+	position: absolute;
+  width: 100%;
+	z-index: 2;
+}
+canvas {
+	cursor: crosshair;
+	display: block;
+	position: absolute;
+	z-index: 3;
+}
+canvas:active {
+	cursor: crosshair;
+}
+#skyline {
+	background: url(skyline.png) repeat-x 50% 0;
+	bottom: 0;
+	height: 135px;
+	left: 0;
+	position: absolute;
+	width: 100%;
+	z-index: 1;	
+}
+#mountains1 {
+	background: url(mountains1.png) repeat-x 40% 0;
+	bottom: 0;
+	height: 200px;
+	left: 0;
+	position: absolute;
+	width: 100%;
+	z-index: 1;	
+}
+#mountains2 {
+	background: url(mountains2.png) repeat-x 30% 0;
+	bottom: 0;
+	height: 250px;
+	left: 0;
+	position: absolute;
+	width: 100%;
+	z-index: 1;	
+}
+</style>
 </head>
-
-<body>
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-
-			<div class="content text-center">
-				<h1>亲爱的小仙女，来玩一个猜数字的游戏吧:)</h1>
-				<p class="text-center">猜一个1-100之间的数字,只可以猜10次呀</p>
-
-				<div class="form form-group">
-					<label for="guessField">输入你的数字: </label><input type="text" id="guessField" class="guessField form-control">
-					<input type="submit" value="确定" class="guessSubmit btn btn-success">
-				</div>
-
-				<div class="resultParas">
-					<p class="guesses"></p>
-					<p class="lastResult"></p>
-					<p class="lowOrHi"></p>
-				</div>
-			</div>
-
-		</div>
-
-
-	</div>
+<body>	
+<div id="canvas-container">
+  <div id="mountains2"></div>
+  <div id="mountains1"></div>
+  <div id="skyline"></div>
 </div>
-<script>
-	// Your JavaScript goes here
-	let randomNumber = Math.floor (Math.random () * 100) + 1;
-
-	let guesses = document.querySelector ('.guesses');
-	let lastResult = document.querySelector ('.lastResult');
-	let lowOrHi = document.querySelector ('.lowOrHi');
-
-	let guessSubmit = document.querySelector ('.guessSubmit');
-	let guessField = document.querySelector ('.guessField');
-
-	let guessCount = 1;
-	let resetButton;
-	guessSubmit.addEventListener ('click', function () {
-		checkGuess ();
-	});
-	guessField.focus();
-
-	function checkGuess() {
-		let userGuess = Number (guessField.value);
-		if (guessCount === 1) {
-			guesses.textContent = '历史猜测记录:';
-		}
-		guesses.textContent += userGuess + ' ';
-		if (userGuess === randomNumber) {
-			lastResult.textContent = '恭喜你!你猜对了';
-			lastResult.style.backgroundColor = 'green';
-			lowOrHi.textContent = '';
-			setGameOver ();
-		} else if (guessCount === 10) {
-			lastResult.textContent = '!!!GAME OVER!!!';
-			setGameOver ();
-		} else {
-			lastResult.textContent = '猜错啦,李雪小仙女:)';
-			lastResult.style.backgroundColor = 'red';
-			if (userGuess < randomNumber) {
-				lowOrHi.textContent = '小仙女你的数字太小啦!';
-			} else if (userGuess > randomNumber) {
-				lowOrHi.textContent = '小仙女你的数字太大啦!';
-			}
-		}
-		guessCount++;
-		guessField.value = '';
-		guessField.focus ();
-	}
-
-	function setGameOver() {
-		guessField.disabled = true;
-		guessSubmit.disabled = true;
-		resetButton = document.createElement ('button');
-		resetButton.textContent = '再次开始游戏吧';
-		resetButton.className = 'btn btn-primary';
-		document.querySelector('.content').appendChild (resetButton);
-		resetButton.addEventListener ('click', resetGame);
-	}
-
-	function resetGame() {
-		guessCount = 1;
-
-		let resetParas = document.querySelectorAll ('.resultParas p');
-		for (let i = 0; i < resetParas.length; i++) {
-			resetParas[i].textContent = '';
-		}
-
-		resetButton.parentNode.removeChild (resetButton);
-
-		guessField.disabled = false;
-		guessSubmit.disabled = false;
-		guessField.value = '';
-		guessField.focus ();
-
-		lastResult.style.backgroundColor = 'white';
-
-		randomNumber = Math.floor (Math.random () * 100) + 1;
-	}
-</script>
+  <script src='js/jquery.js'></script>
+  <script src="js/index.js"></script>
 </body>
 </html>
