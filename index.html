@@ -2,6 +2,7 @@
 <html lang="zh_CN">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>个人简历</title>
 	<!-- 引入样式 -->
 	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
@@ -307,6 +308,9 @@
 				printIframe.contentDocument.close();
 				printIframe.contentWindow.print();
 			}
+		},
+		mounted:function () {
+
 		},
 	});
 </script>

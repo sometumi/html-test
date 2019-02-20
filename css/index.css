@@ -32,6 +32,17 @@ li {
     text-align: left;
 }
 
+@media screen and (max-device-width:960px){
+    .container {
+        width: 100%;
+        left: 0;
+        font-size: 1em;
+    }
+    .btn-print {
+        display: none;
+    }
+}
+
 .btn-print{
     position: absolute;
     z-index: 2;
