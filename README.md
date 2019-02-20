@@ -1,3 +1,1 @@
-# canvas-fireworks
-
-新年快乐
+# 我的个人简历~
