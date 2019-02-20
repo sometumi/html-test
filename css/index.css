@@ -1,0 +1,39 @@
+/*reset*/
+li {
+    list-style-type: none;
+    margin-top: .25em;
+}
+@page
+{
+    size:  auto;   /* auto is the initial value */
+    margin: 0mm;  /* this affects the margin in the printer settings */
+}
+@media print {
+    thead {
+        display: table-header-group;}
+    tfoot {
+        display: table-footer-group;}
+}
+/*动画*/
+.particle {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+/*内容*/
+.container {
+    width: 60%;
+    position: absolute;
+    left: 20%;
+    z-index: 2;
+    text-align: left;
+}
+
+.btn-print{
+    position: absolute;
+    z-index: 2;
+    right: 22%;
+}
