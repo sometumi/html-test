@@ -89,10 +89,10 @@
 					<div class="text item" v-for="(project, indexProject) in person.projects">
 						<h4>{{indexProject+1}}.{{project.name}}</h4>
 						<p>
-							<a :href="project.url" v-if="!project.isWeb">
+							<a :href="project.url" target="_blank" v-if="!project.isWeb">
 								<img :src="project.image" style="width: 200px;">
 							</a>
-							<a :href="project.url" v-else>
+							<a :href="project.url" target="_blank" v-else>
 								{{project.url}}
 							</a>
 						</p>
@@ -107,7 +107,7 @@
 			</el-main>
 			<el-footer>
 				<h5>
-					power by    <a :href="vueURL">vue</a> & <a :href="elementURL">element</a>
+					power by    <a :href="vueURL" target="_blank">vue</a> & <a :href="elementURL" target="_blank">element</a>
 				</h5>
 			</el-footer>
 		</el-container>
