@@ -40,7 +40,7 @@ li {
     .container {
         width: 100%;
         left: 0;
-        font-size: 1em;
+        font-size: 1rem;
     }
     .btn-print {
         display: none;
@@ -51,4 +51,8 @@ li {
     position: absolute;
     z-index: 2;
     right: 22%;
+}
+
+.el-card{
+    margin-bottom: 1rem;
 }
