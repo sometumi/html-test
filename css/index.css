@@ -32,6 +32,10 @@ li {
     text-align: left;
 }
 
+.hide{
+    display: none;
+}
+
 @media screen and (max-device-width:960px){
     .container {
         width: 100%;

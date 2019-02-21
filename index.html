@@ -14,8 +14,8 @@
 	<button class="btn-print" onclick="print()">打印</button>
 	<iframe id="printIframe" src="" width="0" height="0" frameborder="0"></iframe>
 	<section class="particle"></section>
-	<section id="app" class="container">
-		<el-container>
+	<section id="app" class="container hide">
+		<el-container v-show="isShow">
 			<el-main v-cloak>
 				<el-card class="box-card">
 					<div slot="header" class="clearfix">
@@ -299,6 +299,7 @@
 			},
 			vueURL:'https://cn.vuejs.org',
 			elementURL:'http://element-cn.eleme.io',
+			isShow:false,
 		},
 		methods: {
 			print:function () {
@@ -307,10 +308,29 @@
 				printIframe.contentDocument.write(content.innerHTML);
 				printIframe.contentDocument.close();
 				printIframe.contentWindow.print();
-			}
+			},
+			setLoading:function () {
+				let options = {
+					fullscreen:true,
+					// text:'拼命上传中...',
+					// spinner: 'el-icon-loading',
+					// background: 'rgba(0, 0, 0, 0.7)',
+					lock: true,
+				};
+				let loading =this.$loading(options);
+				let that = this;
+				setTimeout(function () {
+					that.$nextTick(() => {
+						loading.close();
+					});
+					that.isShow = true;
+					//删除元素class hide
+					document.getElementById('app').setAttribute('class','container');
+				},1000);
+			},
 		},
 		mounted:function () {
-
+			this.setLoading();
 		},
 	});
 </script>
