@@ -61,11 +61,8 @@
 					</div>
 					<div class="text item">
 						<ul>
-							<li>
-								<a :href="person.fun.jump" target="_blank">微信跳一跳脚本</a>
-							</li>
-							<li>
-								<a :href="person.fun.imageToChars" target="_blank">图片转字符画</a>
+							<li v-for="fun in person.fun">
+								<a :href="fun.url" target="_blank">{{fun.name}}</a>
 							</li>
 						</ul>
 					</div>
@@ -108,7 +105,8 @@
 			</el-main>
 			<el-footer>
 				<h5>
-					power by    <a :href="vueURL" target="_blank">vue</a> & <a :href="elementURL" target="_blank">element</a>
+					power by <a :href="vueURL" target="_blank">vue</a> & <a :href="elementURL"
+					                                                        target="_blank">element</a>
 				</h5>
 			</el-footer>
 		</el-container>
@@ -153,10 +151,20 @@
 					'熟练javascript/jquery/html/css/vue',
 					'了解docker环境部署',
 				],
-				fun: {
-					jump: 'https://github.com/sometumi/jump-game',
-					imageToChars: 'https://github.com/sometumi/imageToChars',
-				},
+				fun: [
+					{
+						name: '跳一跳脚本',
+						url: 'https://github.com/sometumi/jump-game',
+					},
+					{
+						name: '图片转字符画',
+						url: 'https://github.com/sometumi/imageToChars',
+					},
+					{
+						name: 'docker搭建lnmp',
+						url: 'https://github.com/sometumi/docker-lnmp',
+					},
+				],
 				company: [
 					{
 						name: '苏州大道国际旅行社有限公司',
@@ -194,9 +202,9 @@
 						name: '小程序商城模板',
 						url: '',
 						image: './images/商城模板.jpg',
-						isWeb:false,
-						desc:'一个通用的商城模板',
-						duty:[
+						isWeb: false,
+						desc: '一个通用的商城模板',
+						duty: [
 							'项目负责人,负责分配任务,开发后台和接口',
 							'在原来公司框架的基础上开发了Db操作包,后台通用CURD模板,小程序支付包,以及商品相关所有功能,为以后的所有商城类小程序打下基础',
 							'功能包括(产品模块,订单模块,会员模块,报表统计,财务模块,评论模块,权限模块,分销模块)',
@@ -206,9 +214,9 @@
 						name: '神段子搞笑营小程序',
 						url: '',
 						image: './images/神段子.jpg',
-						isWeb:false,
-						desc:'一个用来看视频吸引粉丝的工具',
-						duty:[
+						isWeb: false,
+						desc: '一个用来看视频吸引粉丝的工具',
+						duty: [
 							'项目负责人,负责分配任务,开发后台和接口',
 							'在线签到,邀请好友注册,看视频都可获取基本兑换红包',
 							'功能包括(视频模块,文章模块,会员中心,评论模块,积分模块,全局配置)',
@@ -218,9 +226,9 @@
 						name: '四季森林小程序',
 						url: '',
 						image: './images/四季森林.jpg',
-						isWeb:false,
-						desc:'解决客户线上发布装修请求,商家接单,售后,施工 完成装修服务',
-						duty:[
+						isWeb: false,
+						desc: '解决客户线上发布装修请求,商家接单,售后,施工 完成装修服务',
+						duty: [
 							'项目负责,了解客户需求,分配任务',
 							'开发后台和接口',
 						],
@@ -229,9 +237,9 @@
 						name: '燕窝小程序',
 						url: '',
 						image: './images/燕窝.jpg',
-						isWeb:false,
-						desc:'为商家提供燕窝的在线售卖服务',
-						duty:[
+						isWeb: false,
+						desc: '为商家提供燕窝的在线售卖服务',
+						duty: [
 							'项目负责,了解客户需求,分配任务',
 							'开发后台和接口',
 						],
@@ -240,9 +248,9 @@
 						name: '西服小程序',
 						url: '',
 						image: './images/西服.jpg',
-						isWeb:false,
-						desc:'为校园学生提供西服裁剪和售卖服务',
-						duty:[
+						isWeb: false,
+						desc: '为校园学生提供西服裁剪和售卖服务',
+						duty: [
 							'项目负责,了解客户需求,分配任务',
 							'开发后台和接口,部分网站',
 							'解决在线接单和售卖服务',
@@ -252,9 +260,9 @@
 						name: '咖啡小程序',
 						url: '',
 						image: './images/咖啡.jpg',
-						isWeb:false,
-						desc:'为商家提供零食售卖服务',
-						duty:[
+						isWeb: false,
+						desc: '为商家提供零食售卖服务',
+						duty: [
 							'项目负责,了解客户需求,分配任务',
 							'开发后台和接口,部分网站',
 							'解决在线接单和售卖服务',
@@ -264,9 +272,9 @@
 						name: '淘日本网站',
 						url: 'https://japanbuy.jp',
 						image: '',
-						isWeb:true,
-						desc:'一个提供日本产品的销售/代购平台',
-						duty:[
+						isWeb: true,
+						desc: '一个提供日本产品的销售/代购平台',
+						duty: [
 							'项目负责,了解客户需求,分配任务',
 							'开发后台和接口,部分网站',
 							'解决了多语言问题,对接日本方面微信支付',
@@ -277,9 +285,9 @@
 						name: '美国号码网',
 						url: 'http://www.8number.com/',
 						image: '',
-						isWeb:true,
-						desc:'一个提供美国号码售卖的平台',
-						duty:[
+						isWeb: true,
+						desc: '一个提供美国号码售卖的平台',
+						duty: [
 							'解决了多语言的问题，折扣券的发放，以及是用paypal支付',
 							'解决号码产品批量上传',
 							'完成复杂的号码筛选推荐功能',
@@ -289,45 +297,43 @@
 						name: '苏州舒飞美容',
 						url: 'https://www.shufeinail.com/',
 						image: '',
-						isWeb:true,
-						desc:'提供美容产品在线售卖与客户咨询',
-						duty:[
-
-						],
+						isWeb: true,
+						desc: '提供美容产品在线售卖与客户咨询',
+						duty: [],
 					},
 				],
 			},
-			vueURL:'https://cn.vuejs.org',
-			elementURL:'http://element-cn.eleme.io',
-			isShow:false,
+			vueURL: 'https://cn.vuejs.org',
+			elementURL: 'http://element-cn.eleme.io',
+			isShow: false,
 		},
 		methods: {
-			print:function () {
-				let content = document.getElementById('app');
-				let printIframe = document.getElementById('printIframe');
-				printIframe.contentDocument.write(content.innerHTML);
-				printIframe.contentDocument.close();
-				printIframe.contentWindow.print();
+			print: function () {
+				let content = document.getElementById ('app');
+				let printIframe = document.getElementById ('printIframe');
+				printIframe.contentDocument.write (content.innerHTML);
+				printIframe.contentDocument.close ();
+				printIframe.contentWindow.print ();
 			},
-			setLoading:function () {
+			setLoading: function () {
 				let options = {
-					fullscreen:true,
+					fullscreen: true,
 					lock: true,
 				};
-				let loading =this.$loading(options);
+				let loading = this.$loading (options);
 				let that = this;
-				setTimeout(function () {
-					that.$nextTick(() => {
-						loading.close();
+				setTimeout (function () {
+					that.$nextTick (() => {
+						loading.close ();
 					});
 					that.isShow = true;
 					//删除元素class hide
-					document.getElementById('app').setAttribute('class','container');
-				},1000);
+					document.getElementById ('app').setAttribute ('class', 'container');
+				}, 1000);
 			},
 		},
-		mounted:function () {
-			this.setLoading();
+		mounted: function () {
+			this.setLoading ();
 		},
 	});
 </script>
