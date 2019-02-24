@@ -88,7 +88,7 @@
 						<h4>{{indexProject+1}}.{{project.name}}</h4>
 						<p>
 							<a :href="project.url" target="_blank" v-if="!project.isWeb">
-								<img :src="project.image" style="width: 200px;">
+								<img :src="project.image" style="width: 200px;display: none;">
 							</a>
 							<a :href="project.url" target="_blank" v-else>
 								{{project.url}}
