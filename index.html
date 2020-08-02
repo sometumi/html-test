@@ -69,6 +69,25 @@
 				</el-card>
 				<el-card class="box-card">
 					<div slot="header" class="clearfix">
+						<h3 class=""><i class="el-icon-success"></i>亮点</h3>
+					</div>
+					<div class="text item" v-for="item in person.shiny">
+						<h4>{{item.company}}</h4>
+						<ul>
+							<li v-for="(problem, index) in item.problems">
+								<h5>{{problem.name}}</h5>
+								<h6>{{problem.desc}}</h6>
+								<ul>
+									<li v-for="(solution, index) in problem.solutions">
+										{{index+1}}.{{solution}}
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</el-card>
+				<el-card class="box-card">
+					<div slot="header" class="clearfix">
 						<h3 class=""><i class="el-icon-success"></i>工作经历</h3>
 					</div>
 					<div class="text item" v-for="item in person.company">
@@ -139,17 +158,69 @@
 					gender: '男',
 					birth: '1992',
 					college: '本科/苏州科技大学天平学院',
-					work: '4年多工作经验',
+					work: '5年多工作经验',
 					github: 'https://github.com/sometumi',
 					job: 'php程序员',
-					money: '16k',
+					money: '15k-20k',
 				},
 				power: [
-					'4年多php开发经验，1年go开发经验。熟练掌握Php/go/mysql/redis/linux',
-					'熟悉掌握各框架tp3/tp5/laravel',
-					'熟练掌握MySQL等关系型数据库，及非关系型数据库redis',
-					'熟练javascript/jquery/html/css',
-					'熟悉docker环境部署',
+					'5年多Php开发经验，1年go开发经验，熟练LNMP技术栈的开发',
+					'熟悉掌握tp3/tp5/laravel/egg等主流框架',
+					'熟练掌握MySQL及数据库的查询/索引优化',
+					'熟练Redis，缓存/缓存穿透/缓存击穿/缓存雪崩/消息队列',
+					'熟练javascript/html',
+					'熟悉Git/Linux/Docker环境部署',
+					'熟悉Jenkins/Gitlab的 CI/CD',
+					'熟练一定规模下的秒杀/并发优化',
+				],
+				shiny: [
+					{
+						company: '苏州银力体育',
+						problems: [
+							{
+								name: '1.服务器CPU占用超过70%的问题',
+								desc: '刚进入公司时候，发现无论什么时候，服务器的CPU占用一直在70%以上，很长时间了，都没有解决，这个问题导致网站处理请求缓慢，有时候还必须重启',
+								solutions: [
+									'首先需要定位到造成服务器CPU过高的原因',
+									'top发现apache占用CPU过高，基本在170%左右，docker stats 查看果然是apache的问题',
+									'查看apache access.log和error.log, 在access.log中发现，有一个url的请求访问频次太高，询问得知这个早就不使用了，停掉该网站',
+									'重启查看CPU降下来的不多',
+									'再次寻找问题，docker exec 进入apache 容器中top查看 supervisord 的 CPU 占用非常高 查看日志发现有个 php queue 一直在无限执行 且一直抛出异常',
+									'找到该项目，发现该 证书发布 queue 接口中 之前的错误处理以及 失败会一直重试',
+									'到后台发布证书的接口中查看发现，原来是数据插入的时候没有处理好，导致有一条空数据会被插入,重加判断，解决问题',
+									'重启服务器，问题完美解决',
+								],
+							}
+						],
+					},
+					{
+						company: '苏州银力体育',
+						problems: [
+							{
+								name: '2.服务器代码发布流程问题',
+								desc: '上线需求代码的时候，发现每次发布和部署代码，都需要到服务器上拉去，太麻烦',
+								solutions: [
+									'问题点: 之前他们发布代码是链接到服务器上，在git 拉取代码，如果是node项目还需要部署一番，有点麻烦',
+									'首先尝试Gitlab CI/CD ，每次在master代码更新时自动发布，但因为是侵入式的，需要修改之前的方式，删除每个项目中的.git',
+									'Jenkins CI/CD ，非侵入式，直接在内部机上部署，SSH 执行脚本拉取代码和部署代码接口，更方便，插件和社区资源非常丰富，完美解决问题'
+								]
+							}
+						],
+					},
+					{
+						company: '苏州银力体育',
+						problems: [
+							{
+								name: '3.学生考试页面问题',
+								desc: '学生考试的时候，大概100多人，每次进入考试页面加载缓慢，有时候还会出错，无法考试',
+								solutions: [
+									'减少静态资源的大小',
+									'添加阿里云CDN',
+									'优化代码，添加redis缓存-预热考试题目，在每次创建考试的时候，直接创建题目，不必等到考试时才创建',
+								]
+							}
+						],
+					},
 				],
 				fun: [
 					{
@@ -171,10 +242,19 @@
 				],
 				company: [
 					{
-						name: '苏州云网通网络科技有限公司',
-						exp: '2019年2月~至今',
+						name: '苏州银力体育',
+						exp: '2020年6~2020年7月',
 						duty: [
-							'担任APP端后台负责人,完成APP端开发任务，并且给组员分配需求',
+							'主要使用php和node，负责公司考试/报道系统的维护',
+							'修改和优化网站流程',
+							'解决遗留bug，优化入学报到流程',
+						],
+					},
+					{
+						name: '苏州云网通网络科技有限公司',
+						exp: '2019年2月~2020年5月',
+						duty: [
+							'担任APP端后台负责人,完成APP端接口开发任务',
 							'建立统一管理平台(短信/用户中心/积分)',
 							'修改和优化pc端和m端网站',
 							'负责公司管理后台功能',
@@ -212,6 +292,28 @@
 					},
 				],
 				projects: [
+					{
+						name: '学生报到流程优化/bug修复',
+						url: '',
+						image: '',
+						isWeb: false,
+						desc: '学生在报到时，因为历史遗留问题，经常会出现流程阻塞问题',
+						duty: [
+							'梳理流程，画出流程图和ER图',
+							'解决bug',
+						],
+					},
+					{
+						name: '小程序/管理后台功能优化/bug修复',
+						url: '',
+						image: '',
+						isWeb: false,
+						desc: '后台某些功能使用时很不方便，优化流程',
+						duty: [
+							'解决遗留bug',
+							'优化流程',
+						],
+					},
 					{
 						name: '积分商城',
 						url: '',
